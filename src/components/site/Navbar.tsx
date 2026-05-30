@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Compass } from "lucide-react";
+import { Menu, X, Compass, Sun, Moon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTheme } from "@/hooks/use-theme";
 
 const NAV = [
   { href: "#services", label: "Services" },
@@ -16,6 +17,7 @@ const NAV = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -61,18 +63,36 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="h-10 w-10 rounded-full glass-dark flex items-center justify-center text-white hover:text-gold transition-colors"
+          >
+            {theme === "dark" ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+          </button>
           <Button variant="hero" size="lg" asChild>
             <a href="#book">Book Consultation</a>
           </Button>
         </div>
 
-        <button
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((s) => !s)}
-          className="lg:hidden h-10 w-10 rounded-full glass-dark flex items-center justify-center text-white"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="h-10 w-10 rounded-full glass-dark flex items-center justify-center text-white"
+          >
+            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+          </button>
+          <button
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((s) => !s)}
+            className="h-10 w-10 rounded-full glass-dark flex items-center justify-center text-white"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (
