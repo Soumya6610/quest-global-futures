@@ -114,30 +114,31 @@
 }
 
 .dark {
-  --background: oklch(0.13 0.04 260);
-  --foreground: oklch(0.97 0.005 250);
-  --card: oklch(0.18 0.05 260);
-  --card-foreground: oklch(0.97 0.005 250);
-  --popover: oklch(0.18 0.05 260);
-  --popover-foreground: oklch(0.97 0.005 250);
-  --primary: oklch(0.66 0.19 250);
-  --primary-foreground: oklch(0.13 0.04 260);
-  --secondary: oklch(0.24 0.04 260);
-  --secondary-foreground: oklch(0.97 0.005 250);
-  --muted: oklch(0.22 0.03 260);
-  --muted-foreground: oklch(0.72 0.03 250);
-  --accent: oklch(0.3 0.06 230);
-  --accent-foreground: oklch(0.97 0.005 250);
+  /* Rich premium dark theme — deep midnight navy, luminous blue, gold accent */
+  --background: oklch(0.11 0.035 260);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.17 0.045 260);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.15 0.045 260);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.7 0.2 250);
+  --primary-foreground: oklch(0.11 0.035 260);
+  --secondary: oklch(0.22 0.045 260);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.2 0.035 260);
+  --muted-foreground: oklch(0.74 0.03 250);
+  --accent: oklch(0.32 0.08 225);
+  --accent-foreground: oklch(0.98 0.005 250);
   --destructive: oklch(0.65 0.22 22);
   --destructive-foreground: oklch(0.97 0.005 250);
-  --border: oklch(1 0 0 / 0.1);
-  --input: oklch(1 0 0 / 0.15);
-  --ring: oklch(0.66 0.19 250);
-  --navy: oklch(0.16 0.05 260);
-  --navy-deep: oklch(0.1 0.04 260);
-  --teal: oklch(0.78 0.13 200);
-  --gold: oklch(0.82 0.16 75);
-  --gold-soft: oklch(0.74 0.14 70);
+  --border: oklch(1 0 0 / 0.09);
+  --input: oklch(1 0 0 / 0.14);
+  --ring: oklch(0.7 0.2 250);
+  --navy: oklch(0.14 0.045 260);
+  --navy-deep: oklch(0.08 0.035 260);
+  --teal: oklch(0.8 0.14 200);
+  --gold: oklch(0.84 0.17 78);
+  --gold-soft: oklch(0.76 0.15 72);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -151,6 +152,15 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+/* Premium ambient backdrop only in dark mode — subtle aurora glow */
+.dark body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 0%, oklch(0.4 0.18 255 / 0.25), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 85% 30%, oklch(0.55 0.14 195 / 0.18), transparent 65%),
+    radial-gradient(ellipse 70% 50% at 50% 100%, oklch(0.5 0.16 280 / 0.15), transparent 60%);
+  background-attachment: fixed;
 }
 
 @layer base {
