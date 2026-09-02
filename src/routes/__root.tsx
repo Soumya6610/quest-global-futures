@@ -3,9 +3,7 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
+  useRouter
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
