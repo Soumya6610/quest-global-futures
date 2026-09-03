@@ -3,9 +3,7 @@ import {
   Outlet,
   Link,
   createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
+  useRouter
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -91,7 +89,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
     ],
   }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
   errorComponent: ErrorComponent,
