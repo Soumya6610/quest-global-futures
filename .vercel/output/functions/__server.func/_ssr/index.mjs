@@ -54,7 +54,7 @@ let serverEntryPromise;
 async function getServerEntry() {
   if (!serverEntryPromise) {
     console.log("Loading TanStack server entry...");
-    serverEntryPromise = import("./server-DRhtkBpy.mjs").then((n) => n.s).then((m) => {
+    serverEntryPromise = import("./server-y_gVVD7P.mjs").then((n) => n.s).then((m) => {
       console.log("TanStack server entry loaded");
       return m.default ?? m;
     }).catch((error) => {

@@ -4,7 +4,7 @@ import { S as Slot } from "../_libs/radix-ui__react-slot.mjs";
 import { c as cva } from "../_libs/class-variance-authority.mjs";
 import { c as clsx } from "../_libs/clsx.mjs";
 import { t as twMerge } from "../_libs/tailwind-merge.mjs";
-import { K as Compass, N as Sun, O as Moon, V as LogOut, X, Y as Menu } from "../_libs/lucide-react.mjs";
+import { F as Compass, J as Sun, K as Moon, N as LogOut, X, O as Menu } from "../_libs/lucide-react.mjs";
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

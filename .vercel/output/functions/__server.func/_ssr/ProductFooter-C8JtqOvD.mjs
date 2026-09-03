@@ -1,6 +1,6 @@
 import { j as jsxRuntimeExports } from "../_libs/react.mjs";
 import { L as Link } from "../_libs/tanstack__react-router.mjs";
-import { K as Compass, b as ShieldCheck, A as ArrowRight } from "../_libs/lucide-react.mjs";
+import { F as Compass, b as ShieldCheck, A as ArrowRight } from "../_libs/lucide-react.mjs";
 const footerGroups = [
   {
     title: "Consultations",
