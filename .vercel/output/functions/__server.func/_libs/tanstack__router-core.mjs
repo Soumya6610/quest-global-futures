@@ -4,6 +4,11 @@ import { c as createPlugin, a as createStream, b as crossSerializeStream, g as g
 import { R as ReadableStreamPlugin } from "./seroval-plugins.mjs";
 import { ReadableStream as ReadableStream$1 } from "node:stream/web";
 import { Readable } from "node:stream";
+function notFound(options = {}) {
+  options.isNotFound = true;
+  if (options.throw) throw options;
+  return options;
+}
 function isNotFound(obj) {
   return obj?.isNotFound === true;
 }
@@ -5006,6 +5011,7 @@ export {
   RouterCore as R,
   makeSerovalPlugin as S,
   getStylesheetHref as T,
+  notFound as U,
   _getAssetMatches as _,
   isDangerousProtocol as a,
   BaseRoute as b,

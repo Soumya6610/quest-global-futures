@@ -1,29 +1,28 @@
-import { motion, useInView, useMotionValue, useTransform, animate } from "motion/react";
+import { animate, motion, useInView, useMotionValue, useTransform } from "motion/react";
+import { BadgeCheck, Languages, MapPinned, SearchCheck } from "lucide-react";
 import { useEffect, useRef } from "react";
-import { ShieldCheck, Award, Globe } from "lucide-react";
 
 const stats = [
-  { value: 12, suffix: "+", label: "Years of Experience" },
-  { value: 2700, suffix: "+", label: "Clients Guided" },
-  { value: 250, suffix: "+", label: "Professionals Trained" },
-  { value: 25000, suffix: "+", label: "Community Members" },
+  { value: 6, suffix: "", label: "Sample expert profiles" },
+  { value: 6, suffix: "", label: "Indian cities represented" },
+  { value: 12, suffix: "", label: "Consultation categories" },
+  { value: 3, suffix: "", label: "Ways to consult" },
 ];
 
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
-  const mv = useMotionValue(0);
-  const rounded = useTransform(mv, (v) => Math.floor(v).toLocaleString());
+  const value = useMotionValue(0);
+  const rounded = useTransform(value, (current) => Math.floor(current).toLocaleString("en-IN"));
 
   useEffect(() => {
-    if (inView) {
-      const controls = animate(mv, to, { duration: 2, ease: "easeOut" });
-      return controls.stop;
-    }
-  }, [inView, mv, to]);
+    if (!inView) return;
+    const controls = animate(value, to, { duration: 1.4, ease: "easeOut" });
+    return controls.stop;
+  }, [inView, to, value]);
 
   return (
-    <span ref={ref} className="font-display text-5xl lg:text-6xl font-bold text-gradient-brand">
+    <span ref={ref} className="font-display text-5xl font-bold text-gradient-brand lg:text-6xl">
       <motion.span>{rounded}</motion.span>
       {suffix}
     </span>
@@ -32,43 +31,48 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 
 export function Counters() {
   return (
-    <section className="relative py-20 lg:py-28 bg-secondary/40 border-y border-border">
+    <section className="relative border-y border-border bg-secondary/40 py-20 lg:py-28">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-primary font-semibold">
-            <span className="h-px w-8 bg-primary/40" /> Proven Impact
+        <div className="mx-auto mb-14 max-w-2xl text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            <span className="h-px w-8 bg-primary/40" /> Marketplace preview
             <span className="h-px w-8 bg-primary/40" />
           </div>
-          <h2 className="mt-4 font-display text-3xl lg:text-5xl font-bold tracking-tight">
-            A decade of guiding minds, careers, and futures.
+          <h2 className="mt-4 font-display text-3xl font-bold tracking-tight lg:text-5xl">
+            A clearer way to find one-to-one guidance.
           </h2>
+          <p className="mt-4 text-muted-foreground">
+            The frontend already demonstrates the information and safeguards the live marketplace
+            will expose before a client books.
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {stats.map((s, i) => (
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-8">
+          {stats.map((stat, index) => (
             <motion.div
-              key={s.label}
+              key={stat.label}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="text-center p-6 rounded-3xl glass shadow-elevated"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="rounded-3xl border border-border bg-card/75 p-5 text-center shadow-elevated backdrop-blur lg:p-7"
             >
-              <Counter to={s.value} suffix={s.suffix} />
-              <p className="mt-3 text-sm font-medium text-muted-foreground">{s.label}</p>
+              <Counter to={stat.value} suffix={stat.suffix} />
+              <p className="mt-3 text-sm font-medium text-muted-foreground">{stat.label}</p>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-muted-foreground">
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-muted-foreground">
           {[
-            { icon: ShieldCheck, label: "Govt. Registered (MSME)" },
-            { icon: Award, label: "ISO 9001:2015 Certified" },
-            { icon: Globe, label: "Global Mentor Network" },
-          ].map((b) => (
-            <div key={b.label} className="flex items-center gap-2 text-sm font-medium">
-              <b.icon className="h-5 w-5 text-primary" />
-              {b.label}
+            { icon: SearchCheck, label: "Browse before registering" },
+            { icon: MapPinned, label: "City-based discovery" },
+            { icon: Languages, label: "Language and format filters" },
+            { icon: BadgeCheck, label: "Post-session review design" },
+          ].map((item) => (
+            <div key={item.label} className="flex items-center gap-2 text-sm font-medium">
+              <item.icon className="h-5 w-5 text-primary" />
+              {item.label}
             </div>
           ))}
         </div>

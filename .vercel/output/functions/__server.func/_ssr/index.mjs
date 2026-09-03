@@ -53,37 +53,41 @@ function renderErrorPage() {
 let serverEntryPromise;
 async function getServerEntry() {
   if (!serverEntryPromise) {
-    serverEntryPromise = import("./server-D0Rc1EmQ.mjs").then((n) => n.s).then(
-      (m) => m.default ?? m
-    );
+    console.log("Loading TanStack server entry...");
+    serverEntryPromise = import("./server-DRhtkBpy.mjs").then((n) => n.s).then((m) => {
+      console.log("TanStack server entry loaded");
+      return m.default ?? m;
+    }).catch((error) => {
+      console.error("🔥 FAILED TO LOAD SERVER ENTRY:", error);
+      throw error;
+    });
   }
   return serverEntryPromise;
-}
-async function normalizeCatastrophicSsrResponse(response) {
-  if (response.status < 500) return response;
-  const contentType = response.headers.get("content-type") ?? "";
-  if (!contentType.includes("application/json")) return response;
-  const body = await response.clone().text();
-  if (!body.includes('"unhandled":true') || !body.includes('"message":"HTTPError"')) {
-    return response;
-  }
-  console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
-  return new Response(renderErrorPage(), {
-    status: 500,
-    headers: { "content-type": "text/html; charset=utf-8" }
-  });
 }
 const server = {
   async fetch(request, env, ctx) {
     try {
       const handler = await getServerEntry();
+      console.log("SSR request:", request.url);
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      console.log("SSR response:", response.status);
+      if (response.status >= 500) {
+        const body = await response.clone().text();
+        console.error("SSR 500 BODY:", body);
+        console.error(
+          "CAPTURED ERROR:",
+          consumeLastCapturedError()
+        );
+      }
+      return response;
     } catch (error) {
+      console.error("🔥 ACTUAL SSR EXCEPTION:");
       console.error(error);
       return new Response(renderErrorPage(), {
         status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" }
+        headers: {
+          "content-type": "text/html; charset=utf-8"
+        }
       });
     }
   }

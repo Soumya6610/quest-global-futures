@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { Heart, Wind, Users, Baby, UserCheck, Sparkles, Crown } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const items = [
   { icon: Wind, title: "Anxiety Management", desc: "Cognitive tools to quiet the noise." },
@@ -7,7 +8,11 @@ const items = [
   { icon: Users, title: "Relationship Counseling", desc: "Repair, deepen, or reset what matters." },
   { icon: Baby, title: "Child Counseling", desc: "Safe space for big feelings, age 6–17." },
   { icon: UserCheck, title: "Parenting Guidance", desc: "Modern parenting, grounded in research." },
-  { icon: Sparkles, title: "Confidence Coaching", desc: "Voice, presence, and unshakable self-trust." },
+  {
+    icon: Sparkles,
+    title: "Confidence Coaching",
+    desc: "Voice, presence, and unshakable self-trust.",
+  },
   { icon: Crown, title: "Executive Coaching", desc: "Leadership clarity for C-suite & founders." },
 ];
 
@@ -22,11 +27,19 @@ export function Wellness() {
               <span className="h-px w-8 bg-gold/40" /> Mental Wellness
             </div>
             <h2 className="mt-4 font-display text-4xl lg:text-5xl font-bold tracking-tight text-balance">
-              Life is more than a job title. <span className="text-gradient-gold">We tend to all of it.</span>
+              Life is more than a job title.{" "}
+              <span className="text-gradient-gold">We tend to all of it.</span>
             </h2>
             <p className="mt-5 text-white/70 leading-relaxed max-w-md">
-              Healing isn't linear and neither is growth. Our integrated wellness practice treats you as a whole person — mind, work, relationships, and meaning.
+              Find professionals for private conversations about stress, relationships, confidence
+              and life transitions. Qualifications and scope must be verified before publication.
             </p>
+            <Link
+              to="/experts"
+              className="mt-7 inline-flex rounded-full bg-gold px-5 py-3 text-sm font-semibold text-navy-deep"
+            >
+              Browse wellness experts
+            </Link>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">

@@ -10,11 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as BookExpertIdRouteImport } from './routes/book/$expertId'
+import { Route as ConsultantApplyRouteImport } from './routes/consultant/apply'
+import { Route as ConsultantDashboardRouteImport } from './routes/consultant/dashboard'
+import { Route as ExpertsIndexRouteImport } from './routes/experts/index'
+import { Route as ExpertsExpertIdRouteImport } from './routes/experts/$expertId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -22,31 +39,112 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BookExpertIdRoute = BookExpertIdRouteImport.update({
+  id: '/book/$expertId',
+  path: '/book/$expertId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultantApplyRoute = ConsultantApplyRouteImport.update({
+  id: '/consultant/apply',
+  path: '/consultant/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultantDashboardRoute = ConsultantDashboardRouteImport.update({
+  id: '/consultant/dashboard',
+  path: '/consultant/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpertsIndexRoute = ExpertsIndexRouteImport.update({
+  id: '/experts/',
+  path: '/experts/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpertsExpertIdRoute = ExpertsExpertIdRouteImport.update({
+  id: '/experts/$expertId',
+  path: '/experts/$expertId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/book/$expertId': typeof BookExpertIdRoute
+  '/consultant/apply': typeof ConsultantApplyRoute
+  '/consultant/dashboard': typeof ConsultantDashboardRoute
+  '/experts/$expertId': typeof ExpertsExpertIdRoute
+  '/experts/': typeof ExpertsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/book/$expertId': typeof BookExpertIdRoute
+  '/consultant/apply': typeof ConsultantApplyRoute
+  '/consultant/dashboard': typeof ConsultantDashboardRoute
+  '/experts/$expertId': typeof ExpertsExpertIdRoute
+  '/experts': typeof ExpertsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/dashboard': typeof DashboardRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/book/$expertId': typeof BookExpertIdRoute
+  '/consultant/apply': typeof ConsultantApplyRoute
+  '/consultant/dashboard': typeof ConsultantDashboardRoute
+  '/experts/$expertId': typeof ExpertsExpertIdRoute
+  '/experts/': typeof ExpertsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/sitemap.xml'
+    | '/book/$expertId'
+    | '/consultant/apply'
+    | '/consultant/dashboard'
+    | '/experts/$expertId'
+    | '/experts/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml'
-  id: '__root__' | '/' | '/sitemap.xml'
+  to:
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/sitemap.xml'
+    | '/book/$expertId'
+    | '/consultant/apply'
+    | '/consultant/dashboard'
+    | '/experts/$expertId'
+    | '/experts'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/dashboard'
+    | '/sitemap.xml'
+    | '/book/$expertId'
+    | '/consultant/apply'
+    | '/consultant/dashboard'
+    | '/experts/$expertId'
+    | '/experts/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  DashboardRoute: typeof DashboardRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BookExpertIdRoute: typeof BookExpertIdRoute
+  ConsultantApplyRoute: typeof ConsultantApplyRoute
+  ConsultantDashboardRoute: typeof ConsultantDashboardRoute
+  ExpertsExpertIdRoute: typeof ExpertsExpertIdRoute
+  ExpertsIndexRoute: typeof ExpertsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,6 +156,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -65,12 +177,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/book/$expertId': {
+      id: '/book/$expertId'
+      path: '/book/$expertId'
+      fullPath: '/book/$expertId'
+      preLoaderRoute: typeof BookExpertIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultant/apply': {
+      id: '/consultant/apply'
+      path: '/consultant/apply'
+      fullPath: '/consultant/apply'
+      preLoaderRoute: typeof ConsultantApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultant/dashboard': {
+      id: '/consultant/dashboard'
+      path: '/consultant/dashboard'
+      fullPath: '/consultant/dashboard'
+      preLoaderRoute: typeof ConsultantDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experts/': {
+      id: '/experts/'
+      path: '/experts'
+      fullPath: '/experts/'
+      preLoaderRoute: typeof ExpertsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/experts/$expertId': {
+      id: '/experts/$expertId'
+      path: '/experts/$expertId'
+      fullPath: '/experts/$expertId'
+      preLoaderRoute: typeof ExpertsExpertIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  DashboardRoute: DashboardRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BookExpertIdRoute: BookExpertIdRoute,
+  ConsultantApplyRoute: ConsultantApplyRoute,
+  ConsultantDashboardRoute: ConsultantDashboardRoute,
+  ExpertsExpertIdRoute: ExpertsExpertIdRoute,
+  ExpertsIndexRoute: ExpertsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

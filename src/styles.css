@@ -1,16 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-
 @custom-variant dark (&:is(.dark *));
-
-/*
- * TQGC — The Quest Guidance Center design system.
- * Premium consultancy: Deep navy, professional blue, teal, gold.
- * All colors in oklch. Use semantic tokens via @theme inline.
- */
-
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap");
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
@@ -64,9 +55,17 @@
   --shadow-glow: 0 20px 60px -20px color-mix(in oklab, var(--primary) 45%, transparent);
   --shadow-gold: 0 18px 50px -18px color-mix(in oklab, var(--gold) 55%, transparent);
   --shadow-elevated: 0 30px 80px -30px oklch(0 0 0 / 0.45);
-  --gradient-hero: linear-gradient(135deg, oklch(0.18 0.05 260) 0%, oklch(0.28 0.14 255) 50%, oklch(0.55 0.13 210) 100%);
+  --gradient-hero: linear-gradient(
+    135deg,
+    oklch(0.18 0.05 260) 0%,
+    oklch(0.28 0.14 255) 50%,
+    oklch(0.55 0.13 210) 100%
+  );
   --gradient-gold: linear-gradient(135deg, oklch(0.82 0.16 75) 0%, oklch(0.74 0.18 60) 100%);
-  --gradient-aurora: radial-gradient(ellipse at 20% 20%, oklch(0.6 0.18 220 / 0.4), transparent 50%), radial-gradient(ellipse at 80% 60%, oklch(0.72 0.15 195 / 0.35), transparent 55%), radial-gradient(ellipse at 50% 100%, oklch(0.78 0.16 70 / 0.25), transparent 60%);
+  --gradient-aurora:
+    radial-gradient(ellipse at 20% 20%, oklch(0.6 0.18 220 / 0.4), transparent 50%),
+    radial-gradient(ellipse at 80% 60%, oklch(0.72 0.15 195 / 0.35), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, oklch(0.78 0.16 70 / 0.25), transparent 60%);
 }
 
 :root {
@@ -176,17 +175,27 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-heading);
     letter-spacing: -0.02em;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); }
-  .text-balance { text-wrap: balance; }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
 
   .glass {
     background: color-mix(in oklab, var(--card) 65%, transparent);
@@ -212,22 +221,43 @@
     background-clip: text;
     color: transparent;
   }
-  .bg-aurora { background-image: var(--gradient-aurora); }
-  .bg-hero { background-image: var(--gradient-hero); }
+  .bg-aurora {
+    background-image: var(--gradient-aurora);
+  }
+  .bg-hero {
+    background-image: var(--gradient-hero);
+  }
 
-  .shadow-glow { box-shadow: var(--shadow-glow); }
-  .shadow-gold { box-shadow: var(--shadow-gold); }
-  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  .shadow-gold {
+    box-shadow: var(--shadow-gold);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
 
   @keyframes float-slow {
-    0%, 100% { transform: translateY(0) }
-    50% { transform: translateY(-12px) }
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
   }
-  .animate-float { animation: float-slow 6s ease-in-out infinite; }
+  .animate-float {
+    animation: float-slow 6s ease-in-out infinite;
+  }
 
   @keyframes shimmer {
-    0% { background-position: -200% 0 }
-    100% { background-position: 200% 0 }
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
   .animate-shimmer {
     background: linear-gradient(110deg, transparent 40%, oklch(1 0 0 / 0.18) 50%, transparent 60%);

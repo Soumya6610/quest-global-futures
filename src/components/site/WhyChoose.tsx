@@ -1,28 +1,51 @@
 import { motion } from "motion/react";
-import { Check, X } from "lucide-react";
+import { Check, Minus } from "lucide-react";
 
-const rows: { feat: string; us: boolean; them: boolean | string }[] = [
-  { feat: "Scientific Psychometric Assessments", us: true, them: false },
-  { feat: "Personalized Career Roadmap", us: true, them: false },
-  { feat: "Mental Wellness Integration", us: true, them: false },
-  { feat: "Global Opportunities Network", us: true, them: false },
-  { feat: "Expert Mentors (Avg. 12+ yrs)", us: true, them: "Generic counselors" },
-  { feat: "Long-Term Support & Reviews", us: true, them: false },
-  { feat: "Multi-modal: Online · Video · In-Person", us: true, them: false },
+const rows = [
+  {
+    feature: "Speciality, experience and approach",
+    marketplace: "Visible",
+    directory: "Often limited",
+  },
+  {
+    feature: "City, language and consultation mode",
+    marketplace: "Filterable",
+    directory: "Manual search",
+  },
+  {
+    feature: "Fee and session duration",
+    marketplace: "Shown upfront",
+    directory: "Ask separately",
+  },
+  { feature: "Credential-verification status", marketplace: "Designed in", directory: "Varies" },
+  {
+    feature: "Reviews tied to completed sessions",
+    marketplace: "Designed in",
+    directory: "May be anonymous",
+  },
+  {
+    feature: "Booking, intake and follow-up",
+    marketplace: "One account",
+    directory: "Separate channels",
+  },
 ];
 
 export function WhyChoose() {
   return (
-    <section className="relative py-24 lg:py-32 bg-navy text-white overflow-hidden">
-      <div className="absolute inset-0 bg-aurora opacity-50" />
-      <div className="container mx-auto px-4 lg:px-8 relative">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-gold font-semibold">
-            <span className="h-px w-8 bg-gold/40" /> Why TQGC
+    <section className="relative overflow-hidden bg-navy py-24 text-white lg:py-32">
+      <div className="absolute inset-0 bg-aurora opacity-45" />
+      <div className="container relative mx-auto px-4 lg:px-8">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            <span className="h-px w-8 bg-gold/40" /> Why this experience
           </div>
-          <h2 className="mt-4 font-display text-4xl lg:text-5xl font-bold tracking-tight text-balance">
-            More than counseling. A complete <span className="text-gradient-gold">transformation system</span>.
+          <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-balance lg:text-5xl">
+            Better decisions begin with{" "}
+            <span className="text-gradient-gold">better information.</span>
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-white/65">
+            TQGC is being designed as a consultation marketplace, not just a list of phone numbers.
+          </p>
         </div>
 
         <motion.div
@@ -30,31 +53,40 @@ export function WhyChoose() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-5xl mx-auto rounded-3xl glass-dark overflow-hidden shadow-elevated"
+          className="mx-auto max-w-5xl overflow-hidden rounded-3xl glass-dark shadow-elevated"
         >
-          <div className="grid grid-cols-[1.6fr_1fr_1fr] text-sm">
-            <div className="p-5 lg:p-6 text-white/60 font-medium uppercase text-xs tracking-wider">Feature</div>
-            <div className="p-5 lg:p-6 text-center font-display font-bold text-gold border-l border-white/10">TQGC</div>
-            <div className="p-5 lg:p-6 text-center font-display font-semibold text-white/60 border-l border-white/10">Traditional</div>
-
-            {rows.map((r, i) => (
-              <div key={r.feat} className="contents">
-                <div className={`p-5 lg:p-6 border-t border-white/10 ${i % 2 ? "bg-white/[0.02]" : ""}`}>
-                  {r.feat}
+          <div className="grid grid-cols-[1.45fr_0.8fr_0.8fr] text-xs sm:text-sm">
+            <div className="p-4 text-xs font-medium uppercase tracking-wider text-white/60 sm:p-6">
+              What clients need
+            </div>
+            <div className="border-l border-white/10 p-4 text-center font-display font-bold text-gold sm:p-6">
+              TQGC
+            </div>
+            <div className="border-l border-white/10 p-4 text-center font-display font-semibold text-white/60 sm:p-6">
+              Basic directory
+            </div>
+            {rows.map((row, index) => (
+              <div key={row.feature} className="contents">
+                <div
+                  className={`border-t border-white/10 p-4 sm:p-6 ${index % 2 ? "bg-white/[0.02]" : ""}`}
+                >
+                  {row.feature}
                 </div>
-                <div className={`p-5 lg:p-6 border-t border-l border-white/10 text-center ${i % 2 ? "bg-white/[0.02]" : ""}`}>
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gold/20 text-gold">
+                <div
+                  className={`border-l border-t border-white/10 p-4 text-center sm:p-6 ${index % 2 ? "bg-white/[0.02]" : ""}`}
+                >
+                  <span className="inline-flex items-center gap-1.5 text-gold">
                     <Check className="h-4 w-4" />
+                    <span className="hidden sm:inline">{row.marketplace}</span>
                   </span>
                 </div>
-                <div className={`p-5 lg:p-6 border-t border-l border-white/10 text-center text-white/60 ${i % 2 ? "bg-white/[0.02]" : ""}`}>
-                  {r.them === true ? (
-                    <Check className="h-4 w-4 mx-auto" />
-                  ) : r.them === false ? (
-                    <X className="h-4 w-4 mx-auto opacity-60" />
-                  ) : (
-                    <span className="text-xs">{r.them}</span>
-                  )}
+                <div
+                  className={`border-l border-t border-white/10 p-4 text-center text-white/50 sm:p-6 ${index % 2 ? "bg-white/[0.02]" : ""}`}
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    <Minus className="h-4 w-4" />
+                    <span className="hidden sm:inline">{row.directory}</span>
+                  </span>
                 </div>
               </div>
             ))}
